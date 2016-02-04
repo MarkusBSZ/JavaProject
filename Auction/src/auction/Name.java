@@ -1,17 +1,14 @@
 package auction;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 
+@Entity
+@Table(name="NAME")
 public class Name implements IName {
 	
-	private String firstName;
-	private String lastName;
-
 	public Name() {
 		super();
 	}
-
 	public Name(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
@@ -96,4 +93,14 @@ public class Name implements IName {
 	public String toString() {
 		return firstName + " " + lastName;
 	}
+
+	@Id
+	@Column(name="NAME_ID",columnDefinition= "NUMBER (4,0)")
+	private Long id = Long.valueOf(0);
+	
+	@Column(name="FIRSTNAME",columnDefinition= "VARCHAR2 (24)")
+	private String firstName;
+
+	@Column(name="LASTNAME",columnDefinition= "VARCHAR2 (24)")
+	private String lastName;
 }

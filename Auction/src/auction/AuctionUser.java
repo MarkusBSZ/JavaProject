@@ -5,26 +5,14 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name="AUCTIONUSER")
 public class AuctionUser implements IAuctionUser {
 	
-	private List<AuctionItem> auctions = new ArrayList<AuctionItem>();
-	
-	private List<Bid> bids = new ArrayList<Bid>();
-	
-	private int auctionUserId = 0;
-	
-	private String email;
-	
-	private IName name;
-	
-	private String password;
-	
-	private String username;
-
 	public AuctionUser() {
 		super();
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#add(auction.AuctionItem)
 	 */
@@ -32,7 +20,7 @@ public class AuctionUser implements IAuctionUser {
 	public boolean add(AuctionItem auctionItem) {
 		return this.getAuctions().add(auctionItem);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#add(auction.Bid)
 	 */
@@ -40,7 +28,7 @@ public class AuctionUser implements IAuctionUser {
 	public boolean add(Bid bid) {
 		return this.getBids().add(bid);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#equals(java.lang.Object)
 	 */
@@ -75,7 +63,7 @@ public class AuctionUser implements IAuctionUser {
 			return false;
 		return true;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#getAuctions()
 	 */
@@ -83,15 +71,15 @@ public class AuctionUser implements IAuctionUser {
 	public List<AuctionItem> getAuctions() {
 		return auctions;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#getAuctionUserId()
 	 */
 	@Override
-	public int getAuctionUserId() {
+	public Long getAuctionUserId() {
 		return auctionUserId;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#getBids()
 	 */
@@ -176,7 +164,7 @@ public class AuctionUser implements IAuctionUser {
 	 * @see auction.IAuctionUser#setAuctionUserId(int)
 	 */
 	@Override
-	public void setAuctionUserId(int auctionUserId) {
+	public void setAuctionUserId(Long auctionUserId) {
 		this.auctionUserId = auctionUserId;
 	}
 
@@ -219,5 +207,31 @@ public class AuctionUser implements IAuctionUser {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	private List<AuctionItem> auctions = new ArrayList<AuctionItem>();
+
+	@Id
+	@Column(name="AUCTIONUSER_ID", columnDefinition="NUMBER (4,0)")
+	private Long auctionUserId = Long.valueOf(0);
+
+	
+	private List<Bid> bids = new ArrayList<Bid>();
+
+	@Column(name="EMAIL", columnDefinition="VARCHAR2 (24)")
+	private String email;
+
+	@OneToOne(targetEntity = Name.class,
+			cascade = CascadeType.PERSIST,
+		 	fetch = FetchType.EAGER)
+	@JoinColumn(
+			name = "Name",
+			columnDefinition = "Number(4,0)")
+	private IName name;
+
+	@Column(name="PASSWORD", columnDefinition="VARCHAR2 (24)")
+	private String password;
+
+	@Column(name="USERNAME", columnDefinition="VARCHAR2 (24)")
+	private String username;
 
 }

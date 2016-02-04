@@ -12,7 +12,7 @@ public interface IAuctionUser {
 
 	List<AuctionItem> getAuctions();
 
-	int getAuctionUserId();
+	Long getAuctionUserId();
 
 	List<Bid> getBids();
 
@@ -32,7 +32,7 @@ public interface IAuctionUser {
 
 	void setAuctions(List<AuctionItem> auctions);
 
-	void setAuctionUserId(int auctionUserId);
+	void setAuctionUserId(Long auctionUserId);
 
 	void setBids(List<Bid> bids);
 

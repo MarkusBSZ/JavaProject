@@ -1,8 +1,11 @@
 package auction;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
+@Entity
+@Table(name="BID")
 public class Bid implements IBid {
 	public Bid() {
 		super();
@@ -57,7 +60,7 @@ public class Bid implements IBid {
 	/* (non-Javadoc)
 	 * @see auction.IBid#getDatetime()
 	 */
-	public Date getDatetime() {
+	public LocalDate getDatetime() {
 		return datetime;
 	}
 
@@ -107,7 +110,7 @@ public class Bid implements IBid {
 	/* (non-Javadoc)
 	 * @see auction.IBid#setDatetime(java.util.Date)
 	 */
-	public void setDatetime(Date datetime) {
+	public void setDatetime(LocalDate datetime) {
 		this.datetime = datetime;
 	}
 
@@ -133,11 +136,15 @@ public class Bid implements IBid {
 		return "Bid [bidder=" + bidder.getName() + "]";
 	}
 
+	@Id
+	@Column(name="AMOUNT",columnDefinition="NUMBER (4,0)")
+	private Long bidid = Long.valueOf(0);
+	
 	private float amount;
 
 	private IAuctionUser bidder;
 
-	private Date datetime;
+	private LocalDate datetime;
 
 	protected int id;
 

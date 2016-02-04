@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "AuctionItem")
-public class AuctionItem implements IAuctionItem {
+public class AuctionItem extends Persistence implements IAuctionItem{
 	public AuctionItem() {
 		super();
 	}
@@ -181,6 +181,7 @@ public class AuctionItem implements IAuctionItem {
 	@Column(name="MESSAGEID", columnDefinition = "NUMBER(4,0)")
 	private int auctionItemId = 0;
 
+	
 	private List<Bid> bids = new ArrayList<Bid>();
 
 	@Column(name="DESCRIPTION", columnDefinition= "")
@@ -189,7 +190,12 @@ public class AuctionItem implements IAuctionItem {
 	@Column(name="ENDS", columnDefinition= "DATE")
 	private LocalDate ends;
 	
-	@Column(name="SELLER", columnDefinition= "VARCHAR2 (24)")
+	@ManyToOne(targetEntity = AuctionUser.class,
+		 	cascade = CascadeType.PERSIST,
+		 	fetch = FetchType.EAGER)
+		@JoinColumn(
+		name = "SELLER",
+		columnDefinition = "Number(4,0) CONSTRAINT Auctionitem_Seller_NN NOT NULL")
 	private IAuctionUser seller;
 
 	@Column(name="SUCCESFULBID", columnDefinition= "VARCHAR2 (28)")

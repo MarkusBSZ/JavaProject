@@ -5,6 +5,9 @@
 	<persistence-unit name="AuctionJPA">
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>auction.AuctionItem</class>
+		<class>auction.Name</class>
+		<class>auction.AuctionUser</class>
+		<class>auction.Bid</class>
 		
 		<properties>
 			<!--  Logging levels: OFF, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST -->
