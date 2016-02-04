@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Bid {
 	private float amount;
 
-	private AuctionUser bidder;
+	private IAuctionUser bidder;
 	
 	private Date datetime;
 	
@@ -51,7 +51,7 @@ public class Bid {
 		return amount;
 	}
 
-	public AuctionUser getBidder() {
+	public IAuctionUser getBidder() {
 		return bidder;
 	}
 
@@ -83,7 +83,7 @@ public class Bid {
 		this.amount = amount;
 	}
 
-	public void setBidder(AuctionUser bidder) {
+	public void setBidder(IAuctionUser bidder) {
 		this.bidder = bidder;
 	}
 

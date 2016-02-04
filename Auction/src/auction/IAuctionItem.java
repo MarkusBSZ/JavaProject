@@ -9,7 +9,7 @@ public interface IAuctionItem {
 
 	boolean equals(Object obj);
 
-	Bid findBid(AuctionUser auctionUser);
+	Bid findBid(IAuctionUser auctionUser);
 
 	int getAuctionItemId();
 
@@ -17,7 +17,7 @@ public interface IAuctionItem {
 
 	String getDescription();
 
-	AuctionUser getSeller();
+	IAuctionUser getSeller();
 
 	Bid getSuccessfulBid();
 
@@ -33,7 +33,7 @@ public interface IAuctionItem {
 
 	void setEnds(Date ends);
 
-	void setSeller(AuctionUser seller);
+	void setSeller(IAuctionUser seller);
 
 	void setSuccessfulBid(Bid successfulBid);
 

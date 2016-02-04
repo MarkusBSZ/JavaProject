@@ -14,7 +14,7 @@ public class AuctionItem implements IAuctionItem {
 	
 	private Date ends;
 
-	private AuctionUser seller;
+	private IAuctionUser seller;
 	
 	private Bid successfulBid;
 
@@ -66,7 +66,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#findBid(auction.AuctionUser)
 	 */
-	public Bid findBid(AuctionUser auctionUser) {
+	public Bid findBid(IAuctionUser auctionUser) {
 		for (Bid bid : this.getBids()) {
 			if (bid.getBidder().equals(auctionUser))
 				return bid;
@@ -98,7 +98,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#getSeller()
 	 */
-	public AuctionUser getSeller() {
+	public IAuctionUser getSeller() {
 		return seller;
 	}
 
@@ -165,7 +165,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setSeller(auction.AuctionUser)
 	 */
-	public void setSeller(AuctionUser seller) {
+	public void setSeller(IAuctionUser seller) {
 		this.seller = seller;
 	}
 

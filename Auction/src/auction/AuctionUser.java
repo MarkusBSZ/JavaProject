@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
-public class AuctionUser {
+public class AuctionUser implements IAuctionUser {
 	
 	private List<AuctionItem> auctions = new ArrayList<AuctionItem>();
 	
@@ -25,14 +25,25 @@ public class AuctionUser {
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#add(auction.AuctionItem)
+	 */
+	@Override
 	public boolean add(AuctionItem auctionItem) {
 		return this.getAuctions().add(auctionItem);
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#add(auction.Bid)
+	 */
+	@Override
 	public boolean add(Bid bid) {
 		return this.getBids().add(bid);
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,34 +76,65 @@ public class AuctionUser {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getAuctions()
+	 */
+	@Override
 	public List<AuctionItem> getAuctions() {
 		return auctions;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getAuctionUserId()
+	 */
+	@Override
 	public int getAuctionUserId() {
 		return auctionUserId;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getBids()
+	 */
+	@Override
 	public List<Bid> getBids() {
 		return bids;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getEmail()
+	 */
+	@Override
 	public String getEmail() {
 		return email;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getName()
+	 */
+	@Override
 	public Name getName() {
 		return name;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getPassword()
+	 */
+	@Override
 	public String getPassword() {
 		return password;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#getUsername()
+	 */
+	@Override
 	public String getUsername() {
 		return username;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,38 +148,74 @@ public class AuctionUser {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#remove(auction.IAuctionItem)
+	 */
+	@Override
 	public boolean remove(IAuctionItem auctionItem) {
 		return this.getBids().remove(auctionItem);
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#remove(auction.Bid)
+	 */
+	@Override
 	public boolean remove(Bid bid) {
 		return this.getBids().remove(bid);
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setAuctions(java.util.List)
+	 */
+	@Override
 	public void setAuctions(List<AuctionItem> auctions) {
 		this.auctions = auctions;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setAuctionUserId(int)
+	 */
+	@Override
 	public void setAuctionUserId(int auctionUserId) {
 		this.auctionUserId = auctionUserId;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setBids(java.util.List)
+	 */
+	@Override
 	public void setBids(List<Bid> bids) {
 		this.bids = bids;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setEmail(java.lang.String)
+	 */
+	@Override
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setName(auction.Name)
+	 */
+	@Override
 	public void setName(Name name) {
 		this.name = name;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setPassword(java.lang.String)
+	 */
+	@Override
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IAuctionUser#setUsername(java.lang.String)
+	 */
+	@Override
 	public void setUsername(String username) {
 		this.username = username;
 	}
