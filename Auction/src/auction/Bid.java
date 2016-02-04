@@ -96,36 +96,41 @@ public class Bid implements IBid {
 	/* (non-Javadoc)
 	 * @see auction.IBid#setAmount(float)
 	 */
-	public void setAmount(float amount) {
+	public IBid setAmount(float amount) {
 		this.amount = amount;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IBid#setBidder(auction.IAuctionUser)
 	 */
-	public void setBidder(IAuctionUser bidder) {
+	public IBid setBidder(IAuctionUser bidder) {
 		this.bidder = bidder;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IBid#setDatetime(java.util.Date)
 	 */
-	public void setDatetime(LocalDate datetime) {
+	public IBid setDatetime(LocalDate datetime) {
 		this.datetime = datetime;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IBid#setId(int)
 	 */
-	public void setId(int id) {
+	public IBid setId(int id) {
 		this.id = id;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IBid#setItem(auction.IAuctionItem)
 	 */
-	public void setItem(IAuctionItem item) {
+	public IBid setItem(IAuctionItem item) {
 		this.item = item;
+		return this;
 	}
 
 	/* (non-Javadoc)

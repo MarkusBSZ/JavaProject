@@ -10,9 +10,9 @@ public interface IName {
 
 	int hashCode();
 
-	void setFirstName(String firstName);
+	IName setFirstName(String firstName);
 
-	void setLastName(String lastName);
+	IName setLastName(String lastName);
 
 	String toString();
 
