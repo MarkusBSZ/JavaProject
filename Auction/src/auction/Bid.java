@@ -4,16 +4,6 @@ import java.util.Date;
 import javax.persistence.*;
 
 public class Bid implements IBid {
-	private float amount;
-
-	private IAuctionUser bidder;
-	
-	private Date datetime;
-	
-	protected int id;
-
-	private IAuctionItem item;
-
 	public Bid() {
 		super();
 	}
@@ -49,14 +39,14 @@ public class Bid implements IBid {
 			return false;
 		return true;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IBid#getAmount()
 	 */
 	public float getAmount() {
 		return amount;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IBid#getBidder()
 	 */
@@ -142,4 +132,14 @@ public class Bid implements IBid {
 	public String toString() {
 		return "Bid [bidder=" + bidder.getName() + "]";
 	}
+
+	private float amount;
+
+	private IAuctionUser bidder;
+
+	private Date datetime;
+
+	protected int id;
+
+	private IAuctionItem item;
 }
