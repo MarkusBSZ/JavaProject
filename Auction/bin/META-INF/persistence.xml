@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="Auction">
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="AuctionJPA">
+	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>auction.AuctionItem</class>
+		
+		<properties>
+			<!--  Logging levels: OFF, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST -->
+			<property name="eclipselink.logging.level" value="FINE"/>
+			<property name="eclipselink.logging.thread" value="false"/>
+			<property name="eclipselink.logging.session" value="false"/>
+			<property name="eclipselink.logging.timestamp" value="false"/>
+			<property name="eclipselink.logging.exceptions" value="false"/>
+			<property name="eclipselink.jdbc.read-connections.min" value="1"/>
+			<property name="eclipselink.jdbc.write-connections.min" value="1"/>
+			<property name="eclipselink.target-database" value="Oracle"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@172.16.1.14:1521:orclit"/>
+			<property name="javax.persistence.jdbc.user" value="fi201308"/>
+			<property name="javax.persistence.jdbc.password" value="oracle"/>
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+			<property name="eclipselink.ddl-generation.output-mode" value="both"/>
+		</properties>
 	</persistence-unit>
 </persistence>

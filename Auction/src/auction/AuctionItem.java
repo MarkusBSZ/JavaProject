@@ -1,5 +1,6 @@
 package auction;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,22 +8,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "AuctionItem")
 public class AuctionItem implements IAuctionItem {
-	private int auctionItemId = 0;
-	private List<Bid> bids = new ArrayList<Bid>();
-	
-	private String description;
-	
-	private Date ends;
-
-	private IAuctionUser seller;
-	
-	private IBid successfulBid;
-
 	public AuctionItem() {
 		super();
 	}
-
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#add(auction.Bid)
 	 */
@@ -33,7 +23,7 @@ public class AuctionItem implements IAuctionItem {
 
 		return answer;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#equals(java.lang.Object)
 	 */
@@ -63,7 +53,7 @@ public class AuctionItem implements IAuctionItem {
 			return false;
 		return true;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#findBid(auction.AuctionUser)
 	 */
@@ -81,7 +71,7 @@ public class AuctionItem implements IAuctionItem {
 	public int getAuctionItemId() {
 		return auctionItemId;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#getBids()
 	 */
@@ -159,7 +149,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setEnds(java.util.Date)
 	 */
-	public void setEnds(Date ends) {
+	public void setEnds(LocalDate ends) {
 		this.ends = ends;
 	}
 
@@ -185,5 +175,24 @@ public class AuctionItem implements IAuctionItem {
 		return "AuctionItem [description=" + description + ", ends=" + ends
 				+ ", seller=" + seller + "]";
 	}
+
+	
+	@Id
+	@Column(name="MESSAGEID", columnDefinition = "NUMBER(4,0)")
+	private int auctionItemId = 0;
+
+	private List<Bid> bids = new ArrayList<Bid>();
+
+	@Column(name="DESCRIPTION", columnDefinition= "")
+	private String description;
+
+	@Column(name="ENDS", columnDefinition= "DATE")
+	private LocalDate ends;
+	
+	@Column(name="SELLER", columnDefinition= "VARCHAR2 (24)")
+	private IAuctionUser seller;
+
+	@Column(name="SUCCESFULBID", columnDefinition= "VARCHAR2 (28)")
+	private IBid successfulBid;
 
 }

@@ -1,5 +1,6 @@
 package auction;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public interface IAuctionItem {
 
 	void setDescription(String description);
 
-	void setEnds(Date ends);
+	void setEnds(LocalDate ends);
 
 	void setSeller(IAuctionUser seller);
 

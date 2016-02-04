@@ -43,7 +43,7 @@ public final class DaoFactory {
 
 	private static DaoFactory INSTANCE = null;
 
-	public static DaoFactory getINSTANCE() {
+	public static DaoFactory getInstance() {
 		if (DaoFactory.INSTANCE == null) {
 			DaoFactory.INSTANCE = new DaoFactory();
 		}
