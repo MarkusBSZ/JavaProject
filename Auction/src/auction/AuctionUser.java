@@ -160,7 +160,7 @@ public class AuctionUser implements IAuctionUser {
 	 * @see auction.IAuctionUser#remove(auction.Bid)
 	 */
 	@Override
-	public boolean remove(Bid bid) {
+	public boolean remove(IBid bid) {
 		return this.getBids().remove(bid);
 	}
 

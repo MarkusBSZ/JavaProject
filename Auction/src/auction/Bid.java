@@ -3,7 +3,7 @@ package auction;
 import java.util.Date;
 import javax.persistence.*;
 
-public class Bid {
+public class Bid implements IBid {
 	private float amount;
 
 	private IAuctionUser bidder;
@@ -18,6 +18,9 @@ public class Bid {
 		super();
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -47,26 +50,44 @@ public class Bid {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#getAmount()
+	 */
 	public float getAmount() {
 		return amount;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#getBidder()
+	 */
 	public IAuctionUser getBidder() {
 		return bidder;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#getDatetime()
+	 */
 	public Date getDatetime() {
 		return datetime;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#getId()
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#getItem()
+	 */
 	public IAuctionItem getItem() {
 		return item;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#hashCode()
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,26 +100,44 @@ public class Bid {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#setAmount(float)
+	 */
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#setBidder(auction.IAuctionUser)
+	 */
 	public void setBidder(IAuctionUser bidder) {
 		this.bidder = bidder;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#setDatetime(java.util.Date)
+	 */
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#setId(int)
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#setItem(auction.IAuctionItem)
+	 */
 	public void setItem(IAuctionItem item) {
 		this.item = item;
 	}
 
+	/* (non-Javadoc)
+	 * @see auction.IBid#toString()
+	 */
 	@Override
 	public String toString() {
 		return "Bid [bidder=" + bidder.getName() + "]";

@@ -16,7 +16,7 @@ public class AuctionItem implements IAuctionItem {
 
 	private IAuctionUser seller;
 	
-	private Bid successfulBid;
+	private IBid successfulBid;
 
 	public AuctionItem() {
 		super();
@@ -66,8 +66,8 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#findBid(auction.AuctionUser)
 	 */
-	public Bid findBid(IAuctionUser auctionUser) {
-		for (Bid bid : this.getBids()) {
+	public IBid findBid(IAuctionUser auctionUser) {
+		for (IBid bid : this.getBids()) {
 			if (bid.getBidder().equals(auctionUser))
 				return bid;
 		}
@@ -105,7 +105,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#getSuccessfulBid()
 	 */
-	public Bid getSuccessfulBid() {
+	public IBid getSuccessfulBid() {
 		return successfulBid;
 	}
 
@@ -126,7 +126,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#remove(auction.Bid)
 	 */
-	public boolean remove(Bid bid) {
+	public boolean remove(IBid bid) {
 		boolean answer = false;
 		if (this.getBids().contains(bid)) {
 			answer = bid.getBidder().remove(this);
@@ -172,7 +172,7 @@ public class AuctionItem implements IAuctionItem {
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setSuccessfulBid(auction.Bid)
 	 */
-	public void setSuccessfulBid(Bid successfulBid) {
+	public void setSuccessfulBid(IBid successfulBid) {
 		this.successfulBid = successfulBid;
 	}
 
