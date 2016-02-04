@@ -28,7 +28,7 @@ public interface IAuctionUser {
 
 	boolean remove(IAuctionItem auctionItem);
 
-	boolean remove(Bid bid);
+	boolean remove(IBid bid);
 
 	void setAuctions(List<AuctionItem> auctions);
 
