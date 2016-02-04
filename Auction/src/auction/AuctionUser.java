@@ -15,7 +15,7 @@ public class AuctionUser implements IAuctionUser {
 	
 	private String email;
 	
-	private Name name;
+	private IName name;
 	
 	private String password;
 	
@@ -112,7 +112,7 @@ public class AuctionUser implements IAuctionUser {
 	 * @see auction.IAuctionUser#getName()
 	 */
 	@Override
-	public Name getName() {
+	public IName getName() {
 		return name;
 	}
 
@@ -200,7 +200,7 @@ public class AuctionUser implements IAuctionUser {
 	 * @see auction.IAuctionUser#setName(auction.Name)
 	 */
 	@Override
-	public void setName(Name name) {
+	public void setName(IName name) {
 		this.name = name;
 	}
 

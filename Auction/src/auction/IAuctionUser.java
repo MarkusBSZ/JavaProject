@@ -18,7 +18,7 @@ public interface IAuctionUser {
 
 	String getEmail();
 
-	Name getName();
+	IName getName();
 
 	String getPassword();
 
@@ -38,7 +38,7 @@ public interface IAuctionUser {
 
 	void setEmail(String email);
 
-	void setName(Name name);
+	void setName(IName name);
 
 	void setPassword(String password);
 
