@@ -74,16 +74,18 @@ public class Name implements IName {
 	 * @see auction.IName#setFirstName(java.lang.String)
 	 */
 	@Override
-	public void setFirstName(String firstName) {
+	public IName setFirstName(String firstName) {
 		this.firstName = firstName;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IName#setLastName(java.lang.String)
 	 */
 	@Override
-	public void setLastName(String lastName) {
+	public IName setLastName(String lastName) {
 		this.lastName = lastName;
+		return this;
 	}
 
 	/* (non-Javadoc)

@@ -26,17 +26,17 @@ public interface IAuctionItem {
 
 	boolean remove(IBid bid);
 
-	void setAuctionItemId(int auctionItemId);
+	IAuctionItem setAuctionItemId(int auctionItemId);
 
-	void setBids(List<Bid> bids);
+	IAuctionItem setBids(List<Bid> bids);
 
-	void setDescription(String description);
+	IAuctionItem setDescription(String description);
 
-	void setEnds(LocalDate ends);
+	IAuctionItem setEnds(LocalDate ends);
 
-	void setSeller(IAuctionUser seller);
+	IAuctionItem setSeller(IAuctionUser seller);
 
-	void setSuccessfulBid(IBid successfulBid);
+	IAuctionItem setSuccessfulBid(IBid successfulBid);
 
 	String toString();
 

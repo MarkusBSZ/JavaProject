@@ -128,43 +128,49 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setAuctionItemId(int)
 	 */
-	public void setAuctionItemId(int auctionItemId) {
+	public IAuctionItem setAuctionItemId(int auctionItemId) {
 		this.auctionItemId = auctionItemId;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setBids(java.util.List)
 	 */
-	public void setBids(List<Bid> bids) {
+	public IAuctionItem setBids(List<Bid> bids) {
 		this.bids = bids;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setDescription(java.lang.String)
 	 */
-	public void setDescription(String description) {
+	public IAuctionItem setDescription(String description) {
 		this.description = description;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setEnds(java.util.Date)
 	 */
-	public void setEnds(LocalDate ends) {
+	public IAuctionItem setEnds(LocalDate ends) {
 		this.ends = ends;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setSeller(auction.AuctionUser)
 	 */
-	public void setSeller(IAuctionUser seller) {
+	public IAuctionItem setSeller(IAuctionUser seller) {
 		this.seller = seller;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setSuccessfulBid(auction.Bid)
 	 */
-	public void setSuccessfulBid(IBid successfulBid) {
+	public IAuctionItem setSuccessfulBid(IBid successfulBid) {
 		this.successfulBid = successfulBid;
+		return this;
 	}
 
 	/* (non-Javadoc)

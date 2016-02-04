@@ -156,56 +156,63 @@ public class AuctionUser implements IAuctionUser {
 	 * @see auction.IAuctionUser#setAuctions(java.util.List)
 	 */
 	@Override
-	public void setAuctions(List<AuctionItem> auctions) {
+	public IAuctionUser setAuctions(List<AuctionItem> auctions) {
 		this.auctions = auctions;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#setAuctionUserId(int)
 	 */
 	@Override
-	public void setAuctionUserId(Long auctionUserId) {
+	public IAuctionUser setAuctionUserId(Long auctionUserId) {
 		this.auctionUserId = auctionUserId;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#setBids(java.util.List)
 	 */
 	@Override
-	public void setBids(List<Bid> bids) {
+	public IAuctionUser setBids(List<Bid> bids) {
 		this.bids = bids;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#setEmail(java.lang.String)
 	 */
 	@Override
-	public void setEmail(String email) {
+	public IAuctionUser setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#setName(auction.Name)
 	 */
 	@Override
-	public void setName(IName name) {
+	public IAuctionUser setName(IName name) {
 		this.name = name;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#setPassword(java.lang.String)
 	 */
 	@Override
-	public void setPassword(String password) {
+	public IAuctionUser setPassword(String password) {
 		this.password = password;
+		return this;
 	}
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionUser#setUsername(java.lang.String)
 	 */
 	@Override
-	public void setUsername(String username) {
+	public IAuctionUser setUsername(String username) {
 		this.username = username;
+		return this;
 	}
 
 	private List<AuctionItem> auctions = new ArrayList<AuctionItem>();

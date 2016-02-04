@@ -19,15 +19,15 @@ public interface IBid {
 
 	int hashCode();
 
-	void setAmount(float amount);
+	IBid setAmount(float amount);
 
-	void setBidder(IAuctionUser bidder);
+	IBid setBidder(IAuctionUser bidder);
 
-	void setDatetime(LocalDate datetime);
+	IBid setDatetime(LocalDate datetime);
 
-	void setId(int id);
+	IBid setId(int id);
 
-	void setItem(IAuctionItem item);
+	IBid setItem(IAuctionItem item);
 
 	String toString();
 

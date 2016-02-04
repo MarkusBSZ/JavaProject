@@ -30,18 +30,18 @@ public interface IAuctionUser {
 
 	boolean remove(IBid bid);
 
-	void setAuctions(List<AuctionItem> auctions);
+	IAuctionUser setAuctions(List<AuctionItem> auctions);
 
-	void setAuctionUserId(Long auctionUserId);
+	IAuctionUser setAuctionUserId(Long auctionUserId);
 
-	void setBids(List<Bid> bids);
+	IAuctionUser setBids(List<Bid> bids);
 
-	void setEmail(String email);
+	IAuctionUser setEmail(String email);
 
-	void setName(IName name);
+	IAuctionUser setName(IName name);
 
-	void setPassword(String password);
+	IAuctionUser setPassword(String password);
 
-	void setUsername(String username);
+	IAuctionUser setUsername(String username);
 
 }
