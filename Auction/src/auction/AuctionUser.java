@@ -106,7 +106,7 @@ public class AuctionUser {
 		return result;
 	}
 
-	public boolean remove(AuctionItem auctionItem) {
+	public boolean remove(IAuctionItem auctionItem) {
 		return this.getBids().remove(auctionItem);
 	}
 

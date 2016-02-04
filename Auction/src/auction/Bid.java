@@ -12,7 +12,7 @@ public class Bid {
 	
 	protected int id;
 
-	private AuctionItem item;
+	private IAuctionItem item;
 
 	public Bid() {
 		super();
@@ -63,7 +63,7 @@ public class Bid {
 		return id;
 	}
 
-	public AuctionItem getItem() {
+	public IAuctionItem getItem() {
 		return item;
 	}
 
@@ -95,7 +95,7 @@ public class Bid {
 		this.id = id;
 	}
 
-	public void setItem(AuctionItem item) {
+	public void setItem(IAuctionItem item) {
 		this.item = item;
 	}
 
