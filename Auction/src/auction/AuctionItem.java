@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
 public class AuctionItem implements IAuctionItem {
 	private int auctionItemId = 0;
 	private List<Bid> bids = new ArrayList<Bid>();
