@@ -1,8 +1,11 @@
 package auction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.*;
+
+import org.eclipse.persistence.annotations.TypeConverter;
 
 @Entity
 @Table(name="BID")
@@ -60,7 +63,7 @@ public class Bid implements IBid {
 	/* (non-Javadoc)
 	 * @see auction.IBid#getDatetime()
 	 */
-	public LocalDate getDatetime() {
+	public LocalDateTime getDatetime() {
 		return datetime;
 	}
 
@@ -116,7 +119,7 @@ public class Bid implements IBid {
 	/* (non-Javadoc)
 	 * @see auction.IBid#setDatetime(java.util.Date)
 	 */
-	public IBid setDatetime(LocalDate datetime) {
+	public IBid setDatetime(LocalDateTime datetime) {
 		this.datetime = datetime;
 		return this;
 	}
@@ -155,7 +158,10 @@ public class Bid implements IBid {
 	private IAuctionUser bidder;
 
 	@Column(name="DateTime", columnDefinition="DATE")
-	private LocalDate datetime;
+	@TypeConverter(name = "LocalDateTimeToSqlDate", 
+    dataType = LocalDateTime.class, 
+    objectType = java.sql.Date.class)
+	private LocalDateTime datetime;
 
 	@OneToOne(targetEntity = AuctionItem.class,
 			cascade = CascadeType.PERSIST,

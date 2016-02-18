@@ -1,7 +1,6 @@
 package auction;
 
-import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public interface IBid {
 
@@ -11,7 +10,7 @@ public interface IBid {
 
 	IAuctionUser getBidder();
 
-	LocalDate getDatetime();
+	LocalDateTime getDatetime();
 
 	Long getBidid();
 
@@ -23,7 +22,7 @@ public interface IBid {
 
 	IBid setBidder(IAuctionUser bidder);
 
-	IBid setDatetime(LocalDate datetime);
+	IBid setDatetime(LocalDateTime datetime);
 
 	IBid setBidid(Long id);
 

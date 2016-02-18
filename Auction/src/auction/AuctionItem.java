@@ -212,4 +212,11 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 			columnDefinition = "Number(4,0)")
 	private IBid successfulBid;
 
+	@ManyToOne(targetEntity = AuctionInfo.class,
+		 	cascade = CascadeType.PERSIST,
+		 	fetch = FetchType.EAGER)
+		@JoinColumn(
+		name = "Auction",
+		columnDefinition = "Number(4,0)")
+	private IAuctionInfo auctionInfo;
 }
