@@ -26,4 +26,10 @@ public class BidDAO implements GenericDao<IBid>{
 		
 	}
 
+	private static BidDAO INSTANCE = null;
+	
+	
+	public static void setINSTANCE(BidDAO INSTANCE) {
+		INSTANCE = INSTANCE;
+	}
 }

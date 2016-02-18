@@ -3,6 +3,10 @@ package database;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
+import auction.IAuctionItem;
+import auction.IAuctionUser;
+import auction.IBid;
+
 
 public final class DaoFactory {
 	private DaoFactory() {
@@ -49,5 +53,14 @@ public final class DaoFactory {
 		}
 		return INSTANCE;
 	}
-
+	
+	public GenericDao<IAuctionItem> getAuctionItemDao() {
+		return AuctionItemDAO.getInstance();
+	}
+	public GenericDao<IAuctionUser> getAuctionUserDao() {
+		return AuctionUserDAO.getInstance();
+	}
+	public GenericDao<IBid> getBidDao() {
+		return BidDAO.getInstance();
+	}
 }
