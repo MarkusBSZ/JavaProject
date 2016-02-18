@@ -1,7 +1,9 @@
 package testing;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import auction.AuctionItem;
 import auction.AuctionUser;
 import auction.IAuctionItem;
 import auction.IAuctionUser;
@@ -24,15 +26,35 @@ public enum AuctionObjectFactory {
 	}
 	
 	public IAuctionUser bebel(){
-		return null;
+		IAuctionUser bebel = new AuctionUser();
+
+		bebel
+			.setName(new Name("Max","Bebel"))
+			.setUsername("bebelmax")
+			.setPassword("bebelpassword")
+			.setEmail("max.bebel@gmx.de");
+			
+		return bebel;
 	}
 	
 	public IAuctionItem car(){
-		return null;
+		IAuctionItem car = new AuctionItem();
+		
+		car
+			.setDescription("Audi A5 mit 500 PS")
+			.setEnds(LocalDate.now().plusDays(5))
+			.setSeller(abel());
+		return car;
 	}
 	
 	public IAuctionItem computer(){
-		return null;
+		IAuctionItem computer = new AuctionItem();
+		
+		computer
+			.setDescription("Alienware Aurora mit 32GB RAM")
+			.setEnds(LocalDate.now().plusDays(9))
+			.setSeller(bebel());
+		return computer;
 	}
 	
 	public IBid abelBid(){
