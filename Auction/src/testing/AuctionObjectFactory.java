@@ -17,7 +17,7 @@ public enum AuctionObjectFactory {
 		abel
 			.setName(new Name("Dieter","Abel"))
 			.setUsername("abeldieter")
-			.setPassword("abelpasswort")
+			.setPassword("abelpassword")
 			.setEmail("dieter.abel@gmx.de");
 			
 		return abel;
