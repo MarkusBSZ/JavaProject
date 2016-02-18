@@ -13,7 +13,7 @@ public interface IBid {
 
 	LocalDate getDatetime();
 
-	int getId();
+	Long getBidid();
 
 	IAuctionItem getItem();
 
@@ -25,7 +25,7 @@ public interface IBid {
 
 	IBid setDatetime(LocalDate datetime);
 
-	IBid setId(int id);
+	IBid setBidid(Long id);
 
 	IBid setItem(IAuctionItem item);
 
