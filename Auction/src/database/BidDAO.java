@@ -28,6 +28,13 @@ public class BidDAO implements GenericDao<IBid>{
 
 	private static BidDAO INSTANCE = null;
 	
+	public static BidDAO getInstance() {
+		if(BidDAO.INSTANCE == null)
+		{
+			BidDAO.INSTANCE = new BidDAO();
+		}
+		return BidDAO.INSTANCE;
+	}
 	
 	public static void setINSTANCE(BidDAO INSTANCE) {
 		INSTANCE = INSTANCE;

@@ -26,4 +26,17 @@ public class AuctionItemDAO implements GenericDao<IAuctionItem> {
 		
 	}
 
+	private static AuctionItemDAO INSTANCE = null;
+	
+	public static AuctionItemDAO getInstance() {
+		if(AuctionItemDAO.INSTANCE == null)
+		{
+			AuctionItemDAO.INSTANCE = new AuctionItemDAO();
+		}
+		return AuctionItemDAO.INSTANCE;
+	}
+	
+	public static void setINSTANCE(AuctionItemDAO INSTANCE) {
+		INSTANCE = INSTANCE;
+	}
 }

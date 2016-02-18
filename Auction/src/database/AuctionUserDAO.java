@@ -26,4 +26,17 @@ public final class AuctionUserDAO implements GenericDao<IAuctionUser>{
 		
 	}
 
+private static AuctionUserDAO INSTANCE = null;
+	
+	public static AuctionUserDAO getInstance() {
+		if(AuctionUserDAO.INSTANCE == null)
+		{
+			AuctionUserDAO.INSTANCE = new AuctionUserDAO();
+		}
+		return AuctionUserDAO.INSTANCE;
+	}
+	
+	public static void setINSTANCE(AuctionUserDAO INSTANCE) {
+		INSTANCE = INSTANCE;
+	}
 }

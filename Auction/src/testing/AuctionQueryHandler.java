@@ -65,8 +65,8 @@ public enum AuctionQueryHandler {
 	public static void main(String[] args)
 	{	
 		GenericDao<IBid> jpaBidDao = DaoFactory.getInstance().getBidDao();
-		GenericDao<IBid> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
-		GenericDao<IBid> jpaAuctionUserDao = DaoFactory.getInstance().getAuctionUserDao();
+		GenericDao<IAuctionItem> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
+		GenericDao<IAuctionUser> jpaAuctionUserDao = DaoFactory.getInstance().getAuctionUserDao();
 		
 		EntityManager em = DaoFactory.getInstance().getEm();
 		return;
