@@ -9,8 +9,9 @@ public class Name implements IName {
 	public Name() {
 		super();
 	}
-	public Name(String firstName, String lastName) {
+	public Name(Long id, String firstName, String lastName) {
 		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
@@ -98,7 +99,7 @@ public class Name implements IName {
 
 	@Id
 	@Column(name="NAME_ID",columnDefinition= "NUMBER (4,0)")
-	private Long id = Long.valueOf(0);
+	private Long id = Long.valueOf(1);
 	
 	@Column(name="FIRSTNAME",columnDefinition= "VARCHAR2 (24)")
 	private String firstName;

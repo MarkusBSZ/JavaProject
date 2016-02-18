@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.eclipse.persistence.annotations.TypeConverter;
+
 @Entity
 @Table(name = "AuctionItem")
 public class AuctionItem extends Persistence implements IAuctionItem{
@@ -68,7 +70,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#getAuctionItemId()
 	 */
-	public int getAuctionItemId() {
+	public Long getAuctionItemId() {
 		return auctionItemId;
 	}
 	
@@ -128,7 +130,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setAuctionItemId(int)
 	 */
-	public IAuctionItem setAuctionItemId(int auctionItemId) {
+	public IAuctionItem setAuctionItemId(Long auctionItemId) {
 		this.auctionItemId = auctionItemId;
 		return this;
 	}
@@ -185,7 +187,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	
 	@Id
 	@Column(name="AuctionItem_ID", columnDefinition = "NUMBER(4,0)")
-	private int auctionItemId = 0;
+	private Long auctionItemId;
 
 	
 	private List<Bid> bids = new ArrayList<Bid>();
@@ -194,6 +196,9 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	private String description;
 
 	@Column(name="ENDS", columnDefinition= "DATE")
+	@TypeConverter(name = "LocalDateToSqlDate", 
+    dataType = LocalDate.class, 
+    objectType = java.sql.Date.class)
 	private LocalDate ends;
 	
 	@ManyToOne(targetEntity = AuctionUser.class,

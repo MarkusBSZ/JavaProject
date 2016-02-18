@@ -1,6 +1,7 @@
 package testing;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import auction.AuctionUser;
 import auction.IAuctionItem;
@@ -69,6 +70,19 @@ public enum AuctionQueryHandler {
 		GenericDao<IAuctionUser> jpaAuctionUserDao = DaoFactory.getInstance().getAuctionUserDao();
 		
 		EntityManager em = DaoFactory.getInstance().getEm();
+		
+     	EntityTransaction tx = em.getTransaction();
+     	
+     	tx.begin();
+     	
+     	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.abel(),em);
+     	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.bebel(),em);
+     	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.computer(), em);
+     	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.car(), em);
+
+     	
+     	tx.commit();
+		
 		return;
 	}
 }

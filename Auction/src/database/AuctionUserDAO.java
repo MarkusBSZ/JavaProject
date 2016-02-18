@@ -18,7 +18,7 @@ public final class AuctionUserDAO implements GenericDao<IAuctionUser>{
 
 	@Override
 	public void persist(IAuctionUser entity, EntityManager em) {
-		
+		em.persist(entity);
 	}
 
 	@Override

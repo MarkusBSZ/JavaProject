@@ -12,7 +12,7 @@ public interface IAuctionItem {
 
 	IBid findBid(IAuctionUser auctionUser);
 
-	int getAuctionItemId();
+	Long getAuctionItemId();
 
 	List<Bid> getBids();
 
@@ -26,7 +26,7 @@ public interface IAuctionItem {
 
 	boolean remove(IBid bid);
 
-	IAuctionItem setAuctionItemId(int auctionItemId);
+	IAuctionItem setAuctionItemId(Long auctionItemId);
 
 	IAuctionItem setBids(List<Bid> bids);
 

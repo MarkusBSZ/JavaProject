@@ -17,7 +17,8 @@ public enum AuctionObjectFactory {
 		IAuctionUser abel = new AuctionUser();
 
 		abel
-			.setName(new Name("Dieter","Abel"))
+			.setAuctionUserId(Long.valueOf(1))
+			.setName(new Name(Long.valueOf(1),"Dieter","Abel"))
 			.setUsername("abeldieter")
 			.setPassword("abelpassword")
 			.setEmail("dieter.abel@gmx.de");
@@ -29,7 +30,8 @@ public enum AuctionObjectFactory {
 		IAuctionUser bebel = new AuctionUser();
 
 		bebel
-			.setName(new Name("Max","Bebel"))
+			.setAuctionUserId(Long.valueOf(2))
+			.setName(new Name(Long.valueOf(2),"Max","Bebel"))
 			.setUsername("bebelmax")
 			.setPassword("bebelpassword")
 			.setEmail("max.bebel@gmx.de");
@@ -39,21 +41,24 @@ public enum AuctionObjectFactory {
 	
 	public IAuctionItem car(){
 		IAuctionItem car = new AuctionItem();
-		
+		IAuctionUser abel = AuctionObjectFactory.INSTANCE.abel();
+
 		car
+			.setAuctionItemId(Long.valueOf(1))
 			.setDescription("Audi A5 mit 500 PS")
 			.setEnds(LocalDate.now().plusDays(5))
-			.setSeller(abel());
+			.setSeller(abel);
 		return car;
 	}
 	
 	public IAuctionItem computer(){
 		IAuctionItem computer = new AuctionItem();
-		
+		IAuctionUser bebel = AuctionObjectFactory.INSTANCE.bebel();
 		computer
+			.setAuctionItemId(Long.valueOf(2))
 			.setDescription("Alienware Aurora mit 32GB RAM")
 			.setEnds(LocalDate.now().plusDays(9))
-			.setSeller(bebel());
+			.setSeller(bebel);
 		return computer;
 	}
 	
