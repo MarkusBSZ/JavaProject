@@ -8,6 +8,7 @@
 		<class>auction.Name</class>
 		<class>auction.AuctionUser</class>
 		<class>auction.Bid</class>
+		<class>auction.AuctionInfo</class>
 		
 		<properties>
 			<!--  Logging levels: OFF, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST -->
