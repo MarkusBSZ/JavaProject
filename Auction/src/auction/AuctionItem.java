@@ -184,7 +184,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 
 	
 	@Id
-	@Column(name="MESSAGEID", columnDefinition = "NUMBER(4,0)")
+	@Column(name="AuctionItem_ID", columnDefinition = "NUMBER(4,0)")
 	private int auctionItemId = 0;
 
 	
@@ -204,7 +204,12 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 		columnDefinition = "Number(4,0) CONSTRAINT Auctionitem_Seller_NN NOT NULL")
 	private IAuctionUser seller;
 
-	@Column(name="SUCCESFULBID", columnDefinition= "VARCHAR2 (28)")
+	@OneToOne(targetEntity = Bid.class,
+			cascade = CascadeType.PERSIST,
+		 	fetch = FetchType.EAGER)
+	@JoinColumn(
+			name = "SuccessfulBid",
+			columnDefinition = "Number(4,0)")
 	private IBid successfulBid;
 
 }

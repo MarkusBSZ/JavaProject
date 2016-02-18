@@ -67,15 +67,19 @@ public class Bid implements IBid {
 	/* (non-Javadoc)
 	 * @see auction.IBid#getId()
 	 */
-	public int getId() {
-		return id;
-	}
 
-	/* (non-Javadoc)
-	 * @see auction.IBid#getItem()
-	 */
+
 	public IAuctionItem getItem() {
 		return item;
+	}
+
+	public Long getBidid() {
+		return bidid;
+	}
+
+	public IBid setBidid(Long bidid) {
+		this.bidid = bidid;
+		return this;
 	}
 
 	/* (non-Javadoc)
@@ -117,13 +121,7 @@ public class Bid implements IBid {
 		return this;
 	}
 
-	/* (non-Javadoc)
-	 * @see auction.IBid#setId(int)
-	 */
-	public IBid setId(int id) {
-		this.id = id;
-		return this;
-	}
+
 
 	/* (non-Javadoc)
 	 * @see auction.IBid#setItem(auction.IAuctionItem)
@@ -142,16 +140,30 @@ public class Bid implements IBid {
 	}
 
 	@Id
-	@Column(name="AMOUNT",columnDefinition="NUMBER (4,0)")
+	@Column(name="Bid_Id",columnDefinition="NUMBER (4,0)")
 	private Long bidid = Long.valueOf(0);
 	
+	@Column(name="AMOUNT", columnDefinition="NUMBER (4,0)")
 	private float amount;
 
+	@OneToOne(targetEntity = AuctionUser.class,
+			cascade = CascadeType.PERSIST,
+		 	fetch = FetchType.EAGER)
+	@JoinColumn(
+			name = "Bidder",
+			columnDefinition = "Number(4,0)")
 	private IAuctionUser bidder;
 
+	@Column(name="DateTime", columnDefinition="DATE")
 	private LocalDate datetime;
 
-	protected int id;
-
+	@OneToOne(targetEntity = AuctionItem.class,
+			cascade = CascadeType.PERSIST,
+		 	fetch = FetchType.EAGER)
+	@JoinColumn(
+			name = "AuctionItem",
+			columnDefinition = "Number(4,0)")
 	private IAuctionItem item;
+
+
 }
