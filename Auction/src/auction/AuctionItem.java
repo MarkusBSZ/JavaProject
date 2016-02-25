@@ -67,32 +67,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#equals(java.lang.Object)
 	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AuctionItem other = (AuctionItem) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (ends == null) {
-			if (other.ends != null)
-				return false;
-		} else if (!ends.equals(other.ends))
-			return false;
-		if (seller == null) {
-			if (other.seller != null)
-				return false;
-		} else if (!seller.equals(other.seller))
-			return false;
-		return true;
-	}
+
 
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#findBid(auction.AuctionUser)
@@ -103,6 +78,33 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 				return bid;
 		}
 		return null;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AuctionItem other = (AuctionItem) obj;
+		if (auctionInfo == null) {
+			if (other.auctionInfo != null)
+				return false;
+		} else if (!auctionInfo.equals(other.auctionInfo))
+			return false;
+		if (auctionItemId == null) {
+			if (other.auctionItemId != null)
+				return false;
+		} else if (!auctionItemId.equals(other.auctionItemId))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		return true;
 	}
 
 	public IAuctionInfo getAuctionInfo() {
@@ -147,17 +149,13 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 		return successfulBid;
 	}
 
-	/* (non-Javadoc)
-	 * @see auction.IAuctionItem#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((ends == null) ? 0 : ends.hashCode());
-		result = prime * result + ((seller == null) ? 0 : seller.hashCode());
+		result = prime * result + ((auctionInfo == null) ? 0 : auctionInfo.hashCode());
+		result = prime * result + ((auctionItemId == null) ? 0 : auctionItemId.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		return result;
 	}
 

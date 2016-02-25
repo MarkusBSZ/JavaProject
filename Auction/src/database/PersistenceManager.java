@@ -20,7 +20,7 @@ public class PersistenceManager {
 		properties.put(DDL_GENERATION, DROP_AND_CREATE);
 
 		if(PersistenceManager.emf == null) {
-			PersistenceManager.emf = Persistence.createEntityManagerFactory("AuctionJPA", properties);
+			PersistenceManager.emf = Persistence.createEntityManagerFactory("AuctionJPA");//, properties);
 		}
 		return PersistenceManager.emf;
 	}

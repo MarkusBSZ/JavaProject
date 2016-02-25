@@ -23,8 +23,8 @@ public class CreateDatabase {
 		// populate data
 		//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.abel(),em);
      	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.bebel(),em);
-     	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.computer(), em);
      	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.car(), em);
+     	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.computer(), em);
 		tx.commit();
 		
 		DaoFactory.getInstance().closeEm();
