@@ -2,6 +2,7 @@ package database;
 
 import javax.persistence.EntityManager;
 
+import auction.AuctionInfo;
 import auction.IAuctionInfo;
 import auction.IAuctionItem;
 
@@ -15,8 +16,7 @@ public class AuctionInfoDAO  implements GenericDao<IAuctionInfo>{
 
 	@Override
 	public IAuctionInfo findById(IAuctionInfo entity, EntityManager em) {
-		// TODO Auto-generated method stub
-		return null;
+		return (IAuctionInfo) em.find(AuctionInfo.class, entity.getAuctioninfoid());
 	}
 
 	@Override
