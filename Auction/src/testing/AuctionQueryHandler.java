@@ -34,7 +34,9 @@ public enum AuctionQueryHandler {
 	}
 	
 	public void auctionItems()
-	{}
+	{
+		
+	}
 	public void auctionItemsFor(IAuctionUser bidder)
 	{}
 	public void bidsByUser()
