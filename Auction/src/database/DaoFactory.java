@@ -6,6 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import auction.IAuctionItem;
 import auction.IAuctionUser;
 import auction.IBid;
+import auction.IAuctionInfo;
 
 
 public final class DaoFactory {
@@ -62,5 +63,8 @@ public final class DaoFactory {
 	}
 	public GenericDao<IBid> getBidDao() {
 		return BidDAO.getInstance();
+	}
+	public GenericDao<IAuctionInfo> getAuctionInfoDao() {
+		return AuctionInfoDAO.getInstance();
 	}
 }

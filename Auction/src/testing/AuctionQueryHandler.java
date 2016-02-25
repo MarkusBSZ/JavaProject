@@ -1,6 +1,13 @@
 package testing;
 
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import auction.AuctionUser;
 import auction.IAuctionItem;
@@ -69,8 +76,26 @@ public enum AuctionQueryHandler {
 		GenericDao<IBid> jpaBidDao = DaoFactory.getInstance().getBidDao();
 		GenericDao<IAuctionItem> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
 		GenericDao<IAuctionUser> jpaAuctionUserDao = DaoFactory.getInstance().getAuctionUserDao();
+		GenericDao<IAuctionInfo> jpaAuctionInfoDao = DaoFactory.getInstance().getAuctionInfoDao();
 		
 		EntityManager em = DaoFactory.getInstance().getEm();
+		
+     	EntityTransaction tx = em.getTransaction();
+     	
+     	tx.begin();
+     	
+     	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.abel(),em);
+     	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.bebel(),em);
+     	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.computer(), em);
+     	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.car(), em);
+
+     	
+     	tx.commit();
+		
 		return;
 	}
+	
+
+	 
+	
 }

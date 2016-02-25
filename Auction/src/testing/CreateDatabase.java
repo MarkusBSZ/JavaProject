@@ -12,6 +12,9 @@ public class CreateDatabase {
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();
+		
+		
+		
 		// populate data
 		tx.commit();
 		

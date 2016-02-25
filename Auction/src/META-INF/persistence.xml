@@ -9,6 +9,7 @@
 		<class>auction.AuctionUser</class>
 		<class>auction.Bid</class>
 		<class>auction.AuctionInfo</class>
+		<class>auction.AuctionInfo$LocalDateConverter</class>
 		
 		<properties>
 			<!--  Logging levels: OFF, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST -->

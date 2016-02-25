@@ -3,8 +3,10 @@ package testing;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import auction.AuctionInfo;
 import auction.AuctionItem;
 import auction.AuctionUser;
+import auction.IAuctionInfo;
 import auction.IAuctionItem;
 import auction.IAuctionUser;
 import auction.IBid;
@@ -17,7 +19,8 @@ public enum AuctionObjectFactory {
 		IAuctionUser abel = new AuctionUser();
 
 		abel
-			.setName(new Name("Dieter","Abel"))
+			.setAuctionUserId(Long.valueOf(1))
+			.setName(new Name(Long.valueOf(1),"Dieter","Abel"))
 			.setUsername("abeldieter")
 			.setPassword("abelpassword")
 			.setEmail("dieter.abel@gmx.de");
@@ -29,7 +32,8 @@ public enum AuctionObjectFactory {
 		IAuctionUser bebel = new AuctionUser();
 
 		bebel
-			.setName(new Name("Max","Bebel"))
+			.setAuctionUserId(Long.valueOf(2))
+			.setName(new Name(Long.valueOf(2),"Max","Bebel"))
 			.setUsername("bebelmax")
 			.setPassword("bebelpassword")
 			.setEmail("max.bebel@gmx.de");
@@ -39,22 +43,41 @@ public enum AuctionObjectFactory {
 	
 	public IAuctionItem car(){
 		IAuctionItem car = new AuctionItem();
-		
+		IAuctionUser abel = AuctionObjectFactory.INSTANCE.abel();
+		IAuctionInfo auctionInfo = AuctionObjectFactory.INSTANCE.auctionComputers();
+
 		car
+			.setAuctionItemId(Long.valueOf(1))
 			.setDescription("Audi A5 mit 500 PS")
-			.setEnds(LocalDate.now().plusDays(5))
-			.setSeller(abel());
+		//	.setEnds(LocalDateTime.now().plusDays(5))
+			.setSeller(abel)
+			.setAuctionInfo(auctionInfo);
 		return car;
 	}
 	
 	public IAuctionItem computer(){
 		IAuctionItem computer = new AuctionItem();
-		
+		IAuctionUser bebel = AuctionObjectFactory.INSTANCE.bebel();
+		IAuctionInfo auctionInfo = AuctionObjectFactory.INSTANCE.auctionComputers();
+
 		computer
+			.setAuctionItemId(Long.valueOf(2))
 			.setDescription("Alienware Aurora mit 32GB RAM")
-			.setEnds(LocalDate.now().plusDays(9))
-			.setSeller(bebel());
+	//		.setEnds(LocalDateTime.now().plusDays(9))
+			.setSeller(bebel)
+			.setAuctionInfo(auctionInfo);
 		return computer;
+	}
+	
+	public IAuctionInfo auctionComputers(){
+		IAuctionInfo auctionInfo = 
+				new AuctionInfo()
+				.setAuctioninfoid(Long.valueOf(1))
+				.setDescription("Auction for Computers")
+				.setEnd(LocalDate.now().plusDays(Long.valueOf(10)))
+				.setAmount(Long.valueOf(10));
+		
+		return auctionInfo;
 	}
 	
 	public IBid abelBid(){

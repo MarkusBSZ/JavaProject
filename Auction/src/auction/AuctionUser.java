@@ -219,7 +219,7 @@ public class AuctionUser implements IAuctionUser {
 
 	@Id
 	@Column(name="AUCTIONUSER_ID", columnDefinition="NUMBER (4,0)")
-	private Long auctionUserId = Long.valueOf(0);
+	private Long auctionUserId;
 
 	
 	private List<Bid> bids = new ArrayList<Bid>();
