@@ -9,6 +9,8 @@ import javax.persistence.Converter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import auction.AuctionInfo;
+import auction.AuctionItem;
 import auction.AuctionUser;
 import auction.IAuctionInfo;
 import auction.IAuctionItem;
@@ -21,15 +23,32 @@ import database.GenericDao;
 public enum AuctionQueryHandler {
 	INSTANCE;
 	
-	public void populateAuctions()
-	{}
-	
-	public IAuctionItem addAuctionItem()
+	public IAuctionItem addAuctionItem(IAuctionItem auctionItem, GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
 	{
-		return null;
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		jpaAuctionItemDao.persist(auctionItem, em);
+
+		tx.commit();
+		
+		return auctionItem;
 	}
-	public IAuctionItem removeAuctionItem()
+	public IAuctionUser findAuctionUser(GenericDao<IAuctionUser> jpaAuctionUserDao, EntityManager em) 
 	{
+		IAuctionUser search = new AuctionUser().setUsername("abeldieter");
+		return jpaAuctionUserDao.find(search, em);
+	}
+	public IAuctionInfo findAuctionInfoById(GenericDao<IAuctionInfo> jpaAuctionInfoDao, EntityManager em)
+	{
+		IAuctionInfo search = new AuctionInfo().setAuctioninfoid(Long.valueOf(1));
+		return jpaAuctionInfoDao.findById(search, em);
+	}
+	
+	public IAuctionItem removeAuctionItem(GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
+	{
+		IAuctionItem search = new AuctionItem().setAuctionItemId(Long.valueOf(3));
+		IAuctionItem found = jpaAuctionItemDao.findById(search, em);
 		return null;
 	}
 	public IAuctionUser registerUser()
@@ -74,18 +93,26 @@ public enum AuctionQueryHandler {
 	
 	public static void main(String[] args)
 	{	
-		
-		
 		EntityManager em = DaoFactory.getInstance().getEm();
+		GenericDao<IBid> jpaBidDao = DaoFactory.getInstance().getBidDao();
+		GenericDao<IAuctionItem> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
+		GenericDao<IAuctionUser> jpaAuctionUserDao = DaoFactory.getInstance().getAuctionUserDao();
+		GenericDao<IAuctionInfo> jpaAuctionInfoDao = DaoFactory.getInstance().getAuctionInfoDao();
 		
-     	EntityTransaction tx = em.getTransaction();
-     	
-     	tx.begin();
-     	
-     	
-     	
-     	
-     	tx.commit();
+		IAuctionItem auctionItem = new AuctionItem();
+
+		auctionItem
+			.setAuctionItemId(Long.valueOf(3))
+			.setDescription("Wohnung")
+			.setEnds(LocalDate.now().plusDays(3))
+			.setSeller(AuctionQueryHandler.INSTANCE.findAuctionUser(jpaAuctionUserDao,em))
+			.setAuctionInfo(AuctionQueryHandler.INSTANCE.findAuctionInfoById(jpaAuctionInfoDao,em));
+		
+		IAuctionItem wohnung = AuctionQueryHandler.INSTANCE.addAuctionItem(auctionItem, em);
+		
+//     	EntityTransaction tx = em.getTransaction();
+//     	tx.begin();
+//     	tx.commit();
 		
 		return;
 	}
