@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import auction.AuctionUser;
+import auction.IAuctionInfo;
 import auction.IAuctionItem;
 import auction.IAuctionUser;
 import auction.IBid;
@@ -84,9 +85,10 @@ public enum AuctionQueryHandler {
      	
      	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.abel(),em);
      	//jpaAuctionUserDao.persist(AuctionObjectFactory.INSTANCE.bebel(),em);
+     	//jpaAuctionInfoDao.persist(AuctionObjectFactory.INSTANCE.auctionComputers(), em);
      	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.computer(), em);
      	jpaAuctionItemDao.persist(AuctionObjectFactory.INSTANCE.car(), em);
-
+     	
      	
      	tx.commit();
 		

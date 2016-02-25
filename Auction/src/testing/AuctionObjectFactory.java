@@ -15,6 +15,7 @@ import auction.Name;
 
 public enum AuctionObjectFactory {
 	INSTANCE;
+	IAuctionInfo auctionInfo;
 	public IAuctionUser abel(){
 		IAuctionUser abel = new AuctionUser();
 
@@ -49,7 +50,7 @@ public enum AuctionObjectFactory {
 		car
 			.setAuctionItemId(Long.valueOf(1))
 			.setDescription("Audi A5 mit 500 PS")
-		//	.setEnds(LocalDateTime.now().plusDays(5))
+			.setEnds(LocalDate.now().plusDays(5))
 			.setSeller(abel)
 			.setAuctionInfo(auctionInfo);
 		return car;
@@ -63,20 +64,22 @@ public enum AuctionObjectFactory {
 		computer
 			.setAuctionItemId(Long.valueOf(2))
 			.setDescription("Alienware Aurora mit 32GB RAM")
-	//		.setEnds(LocalDateTime.now().plusDays(9))
+			.setEnds(LocalDate.now().plusDays(9))
 			.setSeller(bebel)
 			.setAuctionInfo(auctionInfo);
 		return computer;
 	}
 	
 	public IAuctionInfo auctionComputers(){
-		IAuctionInfo auctionInfo = 
+		if(auctionInfo == null)
+			{
+			auctionInfo = 
 				new AuctionInfo()
 				.setAuctioninfoid(Long.valueOf(1))
 				.setDescription("Auction for Computers")
 				.setEnd(LocalDate.now().plusDays(Long.valueOf(10)))
 				.setAmount(Long.valueOf(10));
-		
+			}
 		return auctionInfo;
 	}
 	
