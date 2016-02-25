@@ -1,8 +1,13 @@
 package auction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 import javax.persistence.*;
+
+import org.eclipse.persistence.annotations.TypeConverter;
 
 @Entity
 @Table(name="AuctionInfo")
@@ -110,9 +115,29 @@ public class AuctionInfo implements IAuctionInfo{
 	@Column(name="description",columnDefinition="VARCHAR2 (255)")
 	private String description;
 	
-	@Column(name="End",columnDefinition="DATE")
-	private LocalDate end;
+
+	private LocalDate end = LocalDate.of(2000, 1, 1);
 	
 	@Column(name="Amount",columnDefinition="Number (4,0)")
 	private Long amount;
+	
+	@Converter (autoApply=true)
+	public class LocalDateConverter implements AttributeConverter<LocalDate, Date>{
+	 
+	    @Override
+	    public Date convertToDatabaseColumn(LocalDate attribute) {
+	        return Date.from(
+	attribute.atStartOfDay().
+	atZone(ZoneId.systemDefault()).toInstant()
+	);
+	    }
+	 
+	    @Override
+	    public LocalDate convertToEntityAttribute(Date date) {
+	return date.toInstant().
+	atZone(
+	ZoneId.systemDefault()
+	).toLocalDate();
+	    }
+	}
 }
