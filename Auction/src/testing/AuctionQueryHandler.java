@@ -49,6 +49,13 @@ public enum AuctionQueryHandler {
 	{
 		IAuctionItem search = new AuctionItem().setAuctionItemId(Long.valueOf(3));
 		IAuctionItem found = jpaAuctionItemDao.findById(search, em);
+		
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//Hier weiter.
+		jpaAuctionItemDao.remove(found, em);
+		tx.commit();
+		
 		return null;
 	}
 	public IAuctionUser registerUser()
@@ -108,7 +115,7 @@ public enum AuctionQueryHandler {
 			.setSeller(AuctionQueryHandler.INSTANCE.findAuctionUser(jpaAuctionUserDao,em))
 			.setAuctionInfo(AuctionQueryHandler.INSTANCE.findAuctionInfoById(jpaAuctionInfoDao,em));
 		
-		IAuctionItem wohnung = AuctionQueryHandler.INSTANCE.addAuctionItem(auctionItem, em);
+		IAuctionItem wohnung = AuctionQueryHandler.INSTANCE.addAuctionItem(auctionItem,jpaAuctionItemDao, em);
 		
 //     	EntityTransaction tx = em.getTransaction();
 //     	tx.begin();
