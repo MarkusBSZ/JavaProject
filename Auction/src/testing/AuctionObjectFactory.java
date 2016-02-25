@@ -76,7 +76,7 @@ public enum AuctionObjectFactory {
 			auctionInfo = 
 				new AuctionInfo()
 				.setAuctioninfoid(Long.valueOf(1))
-				.setDescription("Auction for Computers")
+				.setDescription("Auction from Haupt")
 				.setEnd(LocalDate.now().plusDays(Long.valueOf(10)))
 				.setAmount(Long.valueOf(10));
 			}
