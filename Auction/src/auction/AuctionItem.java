@@ -22,10 +22,8 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	private String description;
 	
 	@Column(name="ENDS", columnDefinition= "DATE")
-	@TypeConverter(name = "LocalDateToSqlDate", 
-    dataType = LocalDateTime.class, 
-    objectType = java.time.LocalDateTime.class)
-	private LocalDateTime ends;
+	@Convert(converter = LocalDatePersistenceConverter.class)
+	private LocalDate ends;
 
 	@ManyToOne(targetEntity = AuctionUser.class,
 		 	cascade = CascadeType.PERSIST,
@@ -131,7 +129,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 		return description;
 	}
 
-	public LocalDateTime getEnds() {
+	public LocalDate getEnds() {
 		return ends;
 	}
 
@@ -208,7 +206,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setEnds(java.util.Date)
 	 */
-	public IAuctionItem setEnds(LocalDateTime ends) {
+	public IAuctionItem setEnds(LocalDate ends) {
 		this.ends = ends;
 		return this;
 	}
