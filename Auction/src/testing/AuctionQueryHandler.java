@@ -150,7 +150,6 @@ public enum AuctionQueryHandler {
 		}
 		return sucsessfulBid;
 	}
-	//jpaAuctionItemDao.find(item, em)
 	
 	public IBid bidForAuctionItem(IAuctionUser bidder, IAuctionItem item, float amount)
 	{
