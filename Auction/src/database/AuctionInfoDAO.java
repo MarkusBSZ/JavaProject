@@ -1,5 +1,7 @@
 package database;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import auction.AuctionInfo;
@@ -26,7 +28,7 @@ public class AuctionInfoDAO  implements GenericDao<IAuctionInfo>{
 
 	@Override
 	public void remove(IAuctionInfo entity, EntityManager em) {
-		// TODO Auto-generated method stub
+		em.remove(entity);
 		
 	}
 	private static AuctionInfoDAO INSTANCE = null;
@@ -41,6 +43,12 @@ public class AuctionInfoDAO  implements GenericDao<IAuctionInfo>{
 	
 	public static void setINSTANCE(AuctionInfoDAO INSTANCE) {
 		INSTANCE = INSTANCE;
+	}
+
+	@Override
+	public List<IAuctionInfo> findAll(EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

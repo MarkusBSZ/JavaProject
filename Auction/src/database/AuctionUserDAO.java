@@ -44,7 +44,7 @@ public final class AuctionUserDAO implements GenericDao<IAuctionUser>{
 
 	@Override
 	public void remove(IAuctionUser entity, EntityManager em) {
-		
+		em.remove(entity);
 	}
 
 private static AuctionUserDAO INSTANCE = null;
@@ -59,5 +59,11 @@ private static AuctionUserDAO INSTANCE = null;
 	
 	public static void setINSTANCE(AuctionUserDAO INSTANCE) {
 		INSTANCE = INSTANCE;
+	}
+
+	@Override
+	public List<IAuctionUser> findAll(EntityManager em) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

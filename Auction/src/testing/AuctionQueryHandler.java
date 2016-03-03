@@ -1,22 +1,21 @@
 package testing;
 
-import java.util.Date;
-import java.util.logging.Logger;
 import java.time.LocalDate;
-import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import auction.AuctionInfo;
 import auction.AuctionItem;
 import auction.AuctionUser;
+import auction.Bid;
 import auction.IAuctionInfo;
 import auction.IAuctionItem;
 import auction.IAuctionUser;
 import auction.IBid;
+import auction.Name;
 import database.DaoFactory;
 import database.GenericDao;
 
@@ -28,18 +27,18 @@ public enum AuctionQueryHandler {
 	{
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-
 		jpaAuctionItemDao.persist(auctionItem, em);
-
 		tx.commit();
 		
 		return auctionItem;
 	}
+	
 	public IAuctionUser findAuctionUser(GenericDao<IAuctionUser> jpaAuctionUserDao, EntityManager em) 
 	{
 		IAuctionUser search = new AuctionUser().setUsername("abeldieter");
 		return jpaAuctionUserDao.find(search, em);
 	}
+	
 	public IAuctionInfo findAuctionInfoById(GenericDao<IAuctionInfo> jpaAuctionInfoDao, EntityManager em)
 	{
 		IAuctionInfo search = new AuctionInfo().setAuctioninfoid(Long.valueOf(1));
@@ -51,28 +50,60 @@ public enum AuctionQueryHandler {
 		IAuctionItem search = new AuctionItem().setAuctionItemId(Long.valueOf(3));
 		IAuctionItem found = jpaAuctionItemDao.findById(search, em);
 		
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		jpaAuctionItemDao.remove(found, em);
-		tx.commit();
-		
+		if(found != null)
+		{
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			jpaAuctionItemDao.remove(found, em);
+			tx.commit();
+		}
 		return found;
 	}
-	public IAuctionUser registerUser()
+	
+	public IAuctionUser registerUser(GenericDao<IAuctionUser> jpaAuctionUserDao, EntityManager em)
 	{
-		return null;
-	}
-	public IAuctionUser unregisterUser()
-	{
-		return null;
+		IAuctionUser auctionUser = new AuctionUser()
+				.setAuctionUserId(Long.valueOf(3))
+				.setName(new Name(Long.valueOf(3),"Marius","Haupt"))
+				.setUsername("hauptmarius")
+				.setPassword("mariuspassword")
+				.setEmail("marius.haupt@gmx.de");
+		
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		jpaAuctionUserDao.persist(auctionUser, em);
+		tx.commit();
+		
+		return auctionUser;
 	}
 	
-	public void auctionItems()
+	public IAuctionUser unregisterUser(GenericDao<IAuctionUser> jpaAuctionUserDao, EntityManager em)
 	{
+		IAuctionUser search = new AuctionUser().setAuctionUserId(Long.valueOf(3));
+		IAuctionUser found = jpaAuctionUserDao.findById(search, em);
 		
+		if(found != null)
+		{
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			jpaAuctionUserDao.remove(found, em);
+			tx.commit();
+		}
+		return found;
 	}
-	public void auctionItemsFor(IAuctionUser bidder)
-	{}
+	
+	public List<IAuctionItem> auctionItems(GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
+	{
+		return jpaAuctionItemDao.findAll(em);
+	}
+	
+	public void auctionItemsFor(IAuctionUser bidder, GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
+	{
+		IBid bid = new Bid().setBidder(bidder);
+		List<IBid> bids = new ArrayList<IBid>();
+		bids.add(bid); 
+		IAuctionItem search = new AuctionItem().setBids(bids);
+	}
 	public void bidsByUser()
 	{}
 	public void bidsForAuctionItem()
@@ -100,8 +131,6 @@ public enum AuctionQueryHandler {
 	
 	public static void main(String[] args)
 	{	
-		Logger logger = Logger.getLogger("testLogger");
-		logger.warning("Test");
 		EntityManager em = DaoFactory.getInstance().getEm();
 		GenericDao<IBid> jpaBidDao = DaoFactory.getInstance().getBidDao();
 		GenericDao<IAuctionItem> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();

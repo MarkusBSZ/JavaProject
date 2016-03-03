@@ -1,6 +1,9 @@
 package database;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import auction.AuctionItem;
 import auction.IAuctionItem;
@@ -39,5 +42,11 @@ public class AuctionItemDAO implements GenericDao<IAuctionItem> {
 	
 	public static void setINSTANCE(AuctionItemDAO INSTANCE) {
 		INSTANCE = INSTANCE;
+	}
+
+	@Override
+	public List<IAuctionItem> findAll(EntityManager em) {
+		Query queryItems = em.createQuery("Select a From AuctionItem a");
+		return queryItems.getResultList();
 	}
 }
