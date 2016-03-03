@@ -53,11 +53,10 @@ public enum AuctionQueryHandler {
 		
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		//Hier weiter.
 		jpaAuctionItemDao.remove(found, em);
 		tx.commit();
 		
-		return null;
+		return found;
 	}
 	public IAuctionUser registerUser()
 	{

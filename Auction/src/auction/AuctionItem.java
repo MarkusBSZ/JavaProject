@@ -16,7 +16,7 @@ import org.eclipse.persistence.annotations.TypeConverter;
 @Table(name = "AuctionItem")
 public class AuctionItem extends Persistence implements IAuctionItem{
 	
-	Logger logger = Logger.getLogger("MyLogger");
+
 	
 	@Id
 	@Column(name="AuctionItem_ID", columnDefinition = "NUMBER(4,0)")
@@ -65,14 +65,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 		boolean answer;
 		answer = this.getBids().add(bid);
 		answer = bid.getBidder().add(this);
-		if(answer)
-		{
-			logger.info("New Bid added to AuctionItem with the ID " + this.getAuctionItemId() + "BidId: " + bid.getBidid());
-		}
-		else
-		{
-			logger.warning("Problem with adding a Bid to the AuctionItem, ItemId: " + this.getAuctionItemId());
-		}
+
 		return answer;
 	}
 
