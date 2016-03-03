@@ -1,6 +1,7 @@
 package testing;
 
 import java.util.Date;
+import java.util.logging.Logger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -100,6 +101,8 @@ public enum AuctionQueryHandler {
 	
 	public static void main(String[] args)
 	{	
+		Logger logger = Logger.getLogger("testLogger");
+		logger.warning("Test");
 		EntityManager em = DaoFactory.getInstance().getEm();
 		GenericDao<IBid> jpaBidDao = DaoFactory.getInstance().getBidDao();
 		GenericDao<IAuctionItem> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
