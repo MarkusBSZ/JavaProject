@@ -2,6 +2,7 @@ package database;
 
 import javax.persistence.EntityManager;
 
+import auction.AuctionItem;
 import auction.IAuctionItem;
 
 public class AuctionItemDAO implements GenericDao<IAuctionItem> {
@@ -13,7 +14,7 @@ public class AuctionItemDAO implements GenericDao<IAuctionItem> {
 
 	@Override
 	public IAuctionItem findById(IAuctionItem entity, EntityManager em) {
-		return null;
+		return (IAuctionItem) em.find(AuctionItem.class, entity.getAuctionItemId());
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class AuctionItemDAO implements GenericDao<IAuctionItem> {
 
 	@Override
 	public void remove(IAuctionItem entity, EntityManager em) {
-		
+		em.remove(entity);
 	}
 
 	private static AuctionItemDAO INSTANCE = null;
