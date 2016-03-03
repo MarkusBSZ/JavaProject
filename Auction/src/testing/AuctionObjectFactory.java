@@ -16,8 +16,10 @@ import auction.Name;
 public enum AuctionObjectFactory {
 	INSTANCE;
 	IAuctionInfo auctionInfo;
+	IAuctionUser abel;
 	public IAuctionUser abel(){
-		IAuctionUser abel = new AuctionUser();
+		if(abel == null)
+		abel = new AuctionUser();
 
 		abel
 			.setAuctionUserId(Long.valueOf(1))

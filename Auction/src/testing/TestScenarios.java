@@ -10,8 +10,12 @@ import javax.persistence.Query;
 import org.junit.Before;
 import org.junit.Test;
 
+import auction.AuctionInfo;
 import auction.AuctionItem;
+import auction.AuctionUser;
+import auction.IAuctionInfo;
 import auction.IAuctionItem;
+import auction.IAuctionUser;
 import database.DaoFactory;
 import database.GenericDao;
 
@@ -29,17 +33,33 @@ public class TestScenarios {
 	@Test
 	public void test_additem() {
 		GenericDao<IAuctionItem> auctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
+		GenericDao<IAuctionUser> auctionUserDao = DaoFactory.getInstance().getAuctionUserDao();
+		GenericDao<IAuctionInfo> auctionInfoDao = DaoFactory.getInstance().getAuctionInfoDao();
+		IAuctionUser seller = new AuctionUser();
+		IAuctionInfo findAuctionInfo = new AuctionInfo().setAuctioninfoid(Long.valueOf(1));
 		IAuctionItem item = new AuctionItem()
 							 .setAuctionItemId(Long.valueOf(5))
-							 .setAuctionInfo(AuctionObjectFactory.INSTANCE.auctionInfo)
+							 .setAuctionInfo(auctionInfoDao.findById(findAuctionInfo, em))
 							 .setDescription("Dreirad rot")
 							 .setEnds(LocalDate.of(2016, 3, 10))
-							 .setSeller(AuctionObjectFactory.INSTANCE.abel());
+							 .setSeller(auctionUserDao.
+									 	findById(
+									 		new AuctionUser()
+									 		.setAuctionUserId(Long.valueOf(1)), 
+									 		em));
 		
 		AuctionQueryHandler.INSTANCE.addAuctionItem(item, auctionItemDao, em);
-		this.wait(1000);
+
 		Query queryItem = em.createQuery("SELECT * FROM AuctionItem WHERE auctionitem_id = 5");
-		
+		IAuctionItem finalItem = (IAuctionItem)queryItem.getSingleResult();
+		assertTrue(finalItem.getAuctionItemId() == 5 &&
+				   finalItem.getDescription().equals("Dreirad rot") &&
+				   finalItem.getEnds().equals(LocalDate.of(2016, 3, 10)) &&
+				   finalItem.getSeller().equals(auctionUserDao.
+									 	findById(
+									 		new AuctionUser()
+									 		.setAuctionUserId(Long.valueOf(1)), 
+									 		em)));
 		
 	}
 
