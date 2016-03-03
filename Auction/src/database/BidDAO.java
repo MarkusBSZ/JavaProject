@@ -3,6 +3,7 @@ package database;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import auction.Bid;
 import auction.IBid;
@@ -45,7 +46,7 @@ public class BidDAO implements GenericDao<IBid>{
 
 	@Override
 	public List<IBid> findAll(EntityManager em) {
-		// TODO Auto-generated method stub
-		return null;
+		Query queryItems = em.createQuery("Select a From Bid a");
+		return queryItems.getResultList();
 	}
 }

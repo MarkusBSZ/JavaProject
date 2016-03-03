@@ -12,7 +12,26 @@ public class AuctionItemDAO implements GenericDao<IAuctionItem> {
 
 	@Override
 	public IAuctionItem find(IAuctionItem entity, EntityManager em) {
-		return null;
+		IAuctionItem found = null;
+		
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder
+			.append("SELECT a FROM AuctionItem a ")
+			.append("WHERE a.Auction = :auction AND ")
+			.append("a.Description = :description");
+		
+		List<IAuctionItem> auctionItems =
+			em
+				.createQuery(stringBuilder.toString())
+				.setParameter("auction", entity.getAuctionInfo())
+				.setParameter("description", entity.getDescription())
+				.getResultList();
+				
+		if(!auctionItems.isEmpty())
+		{
+			found = auctionItems.get(0);
+		}
+		return found;
 	}
 
 	@Override

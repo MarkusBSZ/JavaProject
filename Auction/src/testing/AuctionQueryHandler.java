@@ -3,6 +3,7 @@ package testing;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -97,19 +98,59 @@ public enum AuctionQueryHandler {
 		return jpaAuctionItemDao.findAll(em);
 	}
 	
-	public void auctionItemsFor(IAuctionUser bidder, GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
+	public List<IAuctionItem> auctionItemsFor(IAuctionUser bidder, GenericDao<IBid> jpaBidDao, EntityManager em)
 	{
-		IBid bid = new Bid().setBidder(bidder);
-		List<IBid> bids = new ArrayList<IBid>();
-		bids.add(bid); 
-		IAuctionItem search = new AuctionItem().setBids(bids);
+		List<IBid> allBids = jpaBidDao.findAll(em);
+		List<IAuctionItem> auctionItems = null;
+		
+		if(!allBids.isEmpty())
+		{
+			auctionItems =
+			allBids
+				.stream()
+				.filter(bid -> bid.getBidder().equals(bidder))
+				.map(bid -> bid.getItem())
+				.distinct()
+				.collect(Collectors.toList());
+		}
+		return auctionItems;
 	}
-	public void bidsByUser()
-	{}
-	public void bidsForAuctionItem()
-	{}
-	public void successfulBids(IAuctionItem item)
-	{}
+	public List<IBid> bidsByUser(IAuctionUser bidder, GenericDao<IBid> jpaBidDao, EntityManager em)
+	{
+		List<IBid> allBids = jpaBidDao.findAll(em);
+
+		if(!allBids.isEmpty())
+		{
+			allBids
+				.stream()
+				.filter(bid -> bid.getBidder().equals(bidder))
+				.collect(Collectors.toList());
+		}
+		return allBids;
+	}
+	public List<IBid> bidsForAuctionItem(IAuctionItem item, GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
+	{
+		IAuctionItem found = jpaAuctionItemDao.find(item, em);
+		List<IBid> allBids = null;
+		
+		if(found != null)
+		{
+			allBids = found.getBids();
+		}
+		return allBids;
+	}
+	public IBid successfulBid(IAuctionItem item, GenericDao<IAuctionItem> jpaAuctionItemDao, EntityManager em)
+	{
+		IAuctionItem found = jpaAuctionItemDao.find(item, em);
+		IBid sucsessfulBid = null;
+		
+		if(found != null)
+		{
+			sucsessfulBid = found.getSuccessfulBid();
+		}
+		return sucsessfulBid;
+	}
+	//jpaAuctionItemDao.find(item, em)
 	
 	public IBid bidForAuctionItem(IAuctionUser bidder, IAuctionItem item, float amount)
 	{

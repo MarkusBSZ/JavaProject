@@ -21,7 +21,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	@Id
 	@Column(name="AuctionItem_ID", columnDefinition = "NUMBER(4,0)")
 	private Long auctionItemId;
-	private List<Bid> bids = new ArrayList<Bid>();
+	private List<IBid> bids = new ArrayList<IBid>();
 	
 	@Column(name="DESCRIPTION", columnDefinition= "")
 	private String description;
@@ -126,7 +126,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#getBids()
 	 */
-	public List<Bid> getBids() {
+	public List<IBid> getBids() {
 		return bids;
 	}
 
@@ -195,7 +195,7 @@ public class AuctionItem extends Persistence implements IAuctionItem{
 	/* (non-Javadoc)
 	 * @see auction.IAuctionItem#setBids(java.util.List)
 	 */
-	public IAuctionItem setBids(List<Bid> bids) {
+	public IAuctionItem setBids(List<IBid> bids) {
 		this.bids = bids;
 		return this;
 	}

@@ -14,13 +14,15 @@ public interface IAuctionItem {
 
 	Long getAuctionItemId();
 
-	List<Bid> getBids();
+	List<IBid> getBids();
 
 	String getDescription();
 
 	IAuctionUser getSeller();
 
 	IBid getSuccessfulBid();
+	
+	IAuctionInfo getAuctionInfo();
 
 	int hashCode();
 
@@ -28,7 +30,7 @@ public interface IAuctionItem {
 
 	IAuctionItem setAuctionItemId(Long auctionItemId);
 
-	IAuctionItem setBids(List<Bid> bids);
+	IAuctionItem setBids(List<IBid> bids);
 
 	IAuctionItem setDescription(String description);
 
