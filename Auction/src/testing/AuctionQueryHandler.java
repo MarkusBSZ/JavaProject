@@ -1,6 +1,7 @@
 package testing;
 
 import java.util.Date;
+import java.util.logging.Logger;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
@@ -49,6 +50,13 @@ public enum AuctionQueryHandler {
 	{
 		IAuctionItem search = new AuctionItem().setAuctionItemId(Long.valueOf(3));
 		IAuctionItem found = jpaAuctionItemDao.findById(search, em);
+		
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		//Hier weiter.
+		jpaAuctionItemDao.remove(found, em);
+		tx.commit();
+		
 		return null;
 	}
 	public IAuctionUser registerUser()
@@ -93,6 +101,8 @@ public enum AuctionQueryHandler {
 	
 	public static void main(String[] args)
 	{	
+		Logger logger = Logger.getLogger("testLogger");
+		logger.warning("Test");
 		EntityManager em = DaoFactory.getInstance().getEm();
 		GenericDao<IBid> jpaBidDao = DaoFactory.getInstance().getBidDao();
 		GenericDao<IAuctionItem> jpaAuctionItemDao = DaoFactory.getInstance().getAuctionItemDao();
@@ -108,7 +118,7 @@ public enum AuctionQueryHandler {
 			.setSeller(AuctionQueryHandler.INSTANCE.findAuctionUser(jpaAuctionUserDao,em))
 			.setAuctionInfo(AuctionQueryHandler.INSTANCE.findAuctionInfoById(jpaAuctionInfoDao,em));
 		
-		IAuctionItem wohnung = AuctionQueryHandler.INSTANCE.addAuctionItem(auctionItem, em);
+		IAuctionItem wohnung = AuctionQueryHandler.INSTANCE.addAuctionItem(auctionItem,jpaAuctionItemDao, em);
 		
 //     	EntityTransaction tx = em.getTransaction();
 //     	tx.begin();

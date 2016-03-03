@@ -2,6 +2,7 @@ package auction;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.logging.Logger;
 
 import javax.persistence.*;
 
@@ -10,7 +11,6 @@ import javax.persistence.*;
 @Table(name="AuctionInfo")
 public class AuctionInfo implements IAuctionInfo{
 
-	
 	public AuctionInfo(){
 		
 	}
