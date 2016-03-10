@@ -10,9 +10,29 @@ import auction.IBid;
 
 public class BidDAO implements GenericDao<IBid>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public IBid find(IBid entity, EntityManager em) {
-		return null;
+		IBid  found = null;
+		
+		StringBuilder stringBuilder = new StringBuilder();		
+		stringBuilder
+			.append("SELECT a FROM Bid a ")
+			.append("WHERE a.bidder = :bidder ")
+			.append("AND a.item = :item ");
+		
+		List<IBid> bids =
+				em
+					.createQuery(stringBuilder.toString())
+					.setParameter("bidder", entity.getBidder())
+					.setParameter("item", entity.getItem())
+					.getResultList();
+					
+		if(!bids.isEmpty())
+		{
+			found = bids.get(0);
+		}
+		return found;
 	}
 
 	@Override

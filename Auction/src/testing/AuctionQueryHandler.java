@@ -151,22 +151,79 @@ public enum AuctionQueryHandler {
 		return sucsessfulBid;
 	}
 	
-	public IBid bidForAuctionItem(IAuctionUser bidder, IAuctionItem item, float amount)
+	public IBid bidForAuctionItem(
+			EntityManager em, 
+			GenericDao<IAuctionItem> jpaAuctionItemDao,
+			GenericDao<IBid> jpaBidDao,
+			GenericDao<IAuctionUser> jpaUserDao,
+			IAuctionUser bidder, 
+			IAuctionItem item, 
+			float amount)
 	{
-		return null;
+		IBid bid = new Bid()
+			.setAmount(amount)
+			.setBidder(jpaUserDao.findById(bidder, em))
+			.setItem(jpaAuctionItemDao.findById(item, em));
+
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		jpaBidDao.persist(bid, em);
+		tx.commit();
+	
+		return bid;
 	}
-	public IBid cancelBidForAuctionItem(IAuctionUser bidder, IAuctionItem item)
+	public IBid cancelBidForAuctionItem(
+			EntityManager em, 
+			GenericDao<IAuctionItem> jpaAuctionItemDao,
+			GenericDao<IBid> jpaBidDao,
+			GenericDao<IAuctionUser> jpaUserDao,
+			IAuctionUser bidder, 
+			IAuctionItem item)
 	{
-		return null;
+		IBid bid = new Bid()
+				.setBidder(jpaUserDao.findById(bidder, em))
+				.setItem(jpaAuctionItemDao.findById(item, em));
+
+		IBid found = jpaBidDao.find(bid, em);
+		
+		if(found != null)
+		{
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			jpaBidDao.remove(bid, em);
+			tx.commit();
+		}
+		return bid;
 	}
 	
-	public IAuctionUser changeUserDetails(AuctionUser user)
+	public IAuctionUser changeUserDetails(GenericDao<IAuctionUser> jpaUserDao,EntityManager em,Long userId)
 	{
-		return null;
+		IAuctionUser auctionUser = new AuctionUser()
+									.setAuctionUserId(Long.valueOf(1));
+		IAuctionUser resultUser = jpaUserDao.findById(auctionUser, em);
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		resultUser.setEmail("newEmail@gmx.de");
+		tx.commit();
+		
+		return resultUser;
 	}
-	public IAuctionUser changeItemDescription(Long ItemId, String description)
+	public IAuctionItem changeItemDescription(
+				GenericDao<IAuctionItem> jpaAuctionItemDao, 
+				EntityManager em,
+				Long itemId, 
+				String newDescription)
 	{
-		return null;
+		
+		IAuctionItem auctionItem = new AuctionItem()
+							.setAuctionItemId(itemId);
+		
+		IAuctionItem resultItem = jpaAuctionItemDao.findById(auctionItem, em);
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		auctionItem.setDescription(newDescription);
+		tx.commit();
+		return resultItem;
 	}
 	
 	public static void main(String[] args)

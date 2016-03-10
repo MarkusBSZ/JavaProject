@@ -10,6 +10,7 @@ import auction.IAuctionItem;
 
 public class AuctionItemDAO implements GenericDao<IAuctionItem> {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public IAuctionItem find(IAuctionItem entity, EntityManager em) {
 		IAuctionItem found = null;

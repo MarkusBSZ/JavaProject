@@ -10,10 +10,30 @@ import auction.IAuctionItem;
 
 public class AuctionInfoDAO  implements GenericDao<IAuctionInfo>{
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public IAuctionInfo find(IAuctionInfo entity, EntityManager em) {
-		// TODO Auto-generated method stub
-		return null;
+		IAuctionInfo found = null;
+		
+		StringBuilder stringBuilder = new StringBuilder();		
+		stringBuilder
+			.append("SELECT a FROM AuctionUser a ")
+			.append("WHERE a.end = :end ")
+			.append("AND a.description = :description ");
+		
+		List<IAuctionInfo> auctionInfos =
+				em
+					.createQuery(stringBuilder.toString())
+					.setParameter("description", entity.getDescription())
+					.setParameter("end", entity.getEnd())
+					.getResultList();
+		
+		if(!auctionInfos.isEmpty())
+		{
+			found = auctionInfos.get(0);
+		}
+		
+		return found;
 	}
 
 	@Override
